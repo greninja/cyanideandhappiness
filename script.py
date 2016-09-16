@@ -1,7 +1,7 @@
 import os
 import urllib
 #import urllib2
-import time 
+#import time 
 import requests
 
 from bs4 import BeautifulSoup
@@ -10,9 +10,10 @@ from bs4 import BeautifulSoup
 
 
 def main(i,j):
-	print(" The pics wil")
+	print(" The pics will be stored in CyanideNhappiness directory")
 	
 	os.mkdir('CyanideNhappiness')
+	os.chdir('./CyanideNhappiness/')
 		
 	while (i <= 4409) :
 		
@@ -26,7 +27,7 @@ def main(i,j):
 		
 		final_url = "https://" + soup.find("img",{"id":"main-comic"})['src'].strip("//") 
 
-		urllib.urlretrieve(final_url, complete_path + str(j) +".png")
+		urllib.urlretrieve(final_url, "./" + str(j) +".png")
 		j += 1
 		i += 1
 
