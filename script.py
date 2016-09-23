@@ -1,7 +1,6 @@
 import os
 import urllib
-#import urllib2
-#import time 
+import urlparse
 import requests
 
 from bs4 import BeautifulSoup
@@ -21,13 +20,13 @@ def main(i,j):
 		url = "http://explosm.net/comics/" + str(i)
 		
 		
-		request  = requests.get(url)
-		var = request.text
+		
+		var = requests.get(url).text
 		soup = BeautifulSoup(var,"html.parser")
 		
 		final_url = "https://" + soup.find("img",{"id":"main-comic"})['src'].strip("//") 
-
-		urllib.urlretrieve(final_url, "./" + str(j) +".png")
+		u = urlparse.urlparse(final_url).path.split('/')[-1]
+		urllib.urlretrieve(final_url, u)
 		j += 1
 		i += 1
 
