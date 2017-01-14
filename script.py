@@ -8,12 +8,15 @@ except ImportError:
 
 
 def download_comic():
-	print(" The pics will be stored in CyanideNhappiness directory  \n")
+	print(" The pictures will be stored in CyanideNhappiness directory  \n")
 	
 	os.mkdir('CyanideNhappiness')
 	os.chdir('./CyanideNhappiness/')
+	
+	# Actual index where the comics begin
 	i = 15
-	while (str(i) != 'latest') :
+	
+	while latest_check == 'disabled' :
 		
 			
 		url = "http://explosm.net/comics/" + str(i)
@@ -30,6 +33,8 @@ def download_comic():
 		except TypeError as e:
 			print "Comic not found"
 			
+		latest_check =  soup.find("a",{"title":"Latest comic"})['class'][0]
+
 		i += 1
 
 
@@ -40,3 +45,4 @@ if __name__ == "__main__":
 
 
 #Todo: check if 'latest' referrer header is specified in BeautifulSoup object.
+
